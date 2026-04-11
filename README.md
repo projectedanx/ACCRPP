@@ -18,3 +18,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1O9eoseAmXrdC3ubs8bIlo7
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Documentation
+* [ARCHITECTURE.md](ARCHITECTURE.md) - Contains system architecture diagrams (C4 model) and Architectural Decision Records (ADRs).
+* [LESSONS_LEARNED.md](LESSONS_LEARNED.md) - Contains insights, trade-offs, and future architectural recommendations.
