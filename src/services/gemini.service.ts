@@ -5,7 +5,7 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX';
 
 export interface Concept {
   title: string;
@@ -20,12 +20,12 @@ export class GeminiService {
   private ai: GoogleGenAI;
 
   constructor() {
-    if (typeof process === 'undefined' || !process.env.API_KEY) {
+    if (typeof process === 'undefined' || !process?.env?.API_KEY) {
       console.error('API_KEY is not set.');
       // In a real app, you might want to handle this more gracefully,
       // but for this environment, we assume it's set.
     }
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    this.ai = new GoogleGenAI({ apiKey: typeof process !== 'undefined' && process?.env?.API_KEY ? process.env.API_KEY : 'dummy-key' });
   }
 
   async generateConcepts(
@@ -131,6 +131,28 @@ export class GeminiService {
 
               **Threats**
               [Threats description and bullet points]`,
+            },
+          });
+          return this.parseStandardResponse(response);
+
+
+        case 'PARADOX':
+          response = await this.ai.models.generateContent({
+            model,
+            contents: `Execute Paraconsistent Synthesis on this concept: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction} You are an Epistemic Engineer acting as a Structural Coherence Compiler. Your goal is to apply RCC-8 logic and Z-Axis inference to synthesize contradictory features within the concept.
+              For the user's idea, discover 3 pluriversal features that highlight and resolve paradoxes via Virtual Weight 3 (VW₃) dissonance induction.
+              For each feature, provide a title and a paragraph explaining the paraconsistent synthesis.
+              Format your response as:
+              **Pluriversal Feature 1**
+              [Feature 1 Synthesis]
+
+              **Pluriversal Feature 2**
+              [Feature 2 Synthesis]
+
+              **Pluriversal Feature 3**
+              [Feature 3 Synthesis]`,
             },
           });
           return this.parseStandardResponse(response);
