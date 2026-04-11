@@ -1,0 +1,190 @@
+<main class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans p-4 sm:p-6 lg:p-8 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto relative">
+    
+    <div class="absolute top-0 right-0 z-10">
+      <button 
+        (click)="toggleTheme()"
+        [title]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+        class="p-2 rounded-full text-gray-500 dark:text-gray-400 bg-white/50 dark:bg-gray-800/50 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 focus:ring-sky-500 transition-all">
+        <span class="sr-only">Toggle theme</span>
+        @if (isDarkMode()) {
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+          </svg>
+        } @else {
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          </svg>
+        }
+      </button>
+    </div>
+
+    <header class="text-center mb-8 animate-fade-in pt-12">
+      <h1 class="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-500">ACCRPP</h1>
+      <p class="text-lg text-gray-500 dark:text-gray-400 mt-2">AI Creative Concept Research Partner & Playground</p>
+    </header>
+
+    <div class="space-y-12">
+      <!-- Input Section -->
+      <section class="animate-fade-in" style="animation-delay: 100ms;">
+        <div class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-2xl">
+          <label for="idea-input" class="block text-xl font-semibold mb-3 text-sky-600 dark:text-sky-300">1. Enter Your Seed Idea</label>
+          <textarea 
+            id="idea-input"
+            rows="4" 
+            [value]="idea()"
+            (input)="idea.set($any($event.target).value)"
+            class="w-full bg-gray-100/70 dark:bg-gray-900/70 border border-gray-300 dark:border-gray-600 rounded-lg p-4 text-gray-800 dark:text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition duration-200"
+            placeholder="e.g., An app that translates baby cries into human language..."
+          ></textarea>
+        </div>
+      </section>
+
+      <!-- Persona Selection Section -->
+      <section class="animate-fade-in" style="animation-delay: 200ms;">
+        <div class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-2xl">
+          <label for="persona-select" class="block text-xl font-semibold mb-3 text-sky-600 dark:text-sky-300">2. Select AI Persona</label>
+          <div class="relative">
+            <select 
+              id="persona-select"
+              (change)="selectedPersonaId.set($any($event.target).value)"
+              [value]="selectedPersonaId()"
+              class="w-full appearance-none bg-gray-100/70 dark:bg-gray-900/70 border border-gray-300 dark:border-gray-600 rounded-lg py-3 px-4 pr-10 text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition duration-200">
+              @for (persona of personas; track persona.id) {
+                <option [value]="persona.id">{{ persona.name }}</option>
+              }
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700 dark:text-gray-300">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Options Section -->
+      <section class="animate-fade-in" style="animation-delay: 300ms;">
+        <h2 class="text-xl font-semibold mb-4 text-sky-600 dark:text-sky-300">3. Choose an Action</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          @for (option of generationOptions; track option.id) {
+            <div 
+              (click)="selectOption(option.id)"
+              [class]="'p-6 border rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ' + (selectedOption() === option.id ? 'bg-sky-500/10 dark:bg-sky-500/20 border-sky-500 dark:border-sky-400 ring-2 ring-sky-500 dark:ring-sky-400' : 'bg-white/80 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 hover:border-sky-500 dark:hover:border-sky-500')">
+              <div class="flex items-center space-x-4 mb-2">
+                <div [innerHTML]="option.icon" class="text-sky-500 dark:text-sky-400"></div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">{{ option.title }}</h3>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400">{{ option.description }}</p>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- Action Button -->
+      <section class="text-center animate-fade-in" style="animation-delay: 400ms;">
+        <button 
+          (click)="generate()"
+          [disabled]="isLoading() || !idea()"
+          class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold py-3 px-12 rounded-full text-lg shadow-lg hover:shadow-sky-500/50 transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 disabled:shadow-lg">
+          @if (isLoading()) {
+            <span class="flex items-center justify-center">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Generating...
+            </span>
+          } @else {
+            <span>✨ Generate</span>
+          }
+        </button>
+      </section>
+      
+      <!-- Results Section -->
+      <section class="animate-fade-in" style="animation-delay: 500ms;">
+        @if (isLoading()) {
+          <div class="text-center p-8 text-gray-500 dark:text-gray-400">
+             <p>AI is thinking... Please wait a moment.</p>
+          </div>
+        } @else if (error()) {
+          <div class="bg-red-100 dark:bg-red-500/20 border border-red-400 dark:border-red-500 text-red-700 dark:text-red-300 rounded-lg p-4 text-center">
+            <h3 class="font-bold">An Error Occurred</h3>
+            <p>{{ error() }}</p>
+          </div>
+        } @else if (results(); as resultList) {
+          @if(resultList.length > 0) {
+            <div class="space-y-6">
+              <h2 class="text-2xl font-bold text-sky-600 dark:text-sky-300">Generated Concepts</h2>
+              @for (concept of resultList; track $index) {
+                <div 
+                  draggable="true"
+                  (dragstart)="onDragStart($event, concept)"
+                  class="relative bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-6 animate-fade-in cursor-grab" [style.animation-delay]="$index * 100 + 'ms'">
+                  <button 
+                    (click)="copyToClipboard(concept.content, $index)"
+                    [title]="copiedConceptIndex() === $index ? 'Copied!' : 'Copy to clipboard'"
+                    class="absolute top-4 right-4 p-2 rounded-lg bg-gray-200/50 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 hover:bg-gray-300/70 dark:hover:bg-gray-600/70 hover:text-gray-800 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all duration-200">
+                    <span class="sr-only">Copy content</span>
+                    @if (copiedConceptIndex() === $index) {
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-green-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                    } @else {
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    }
+                  </button>
+
+                  <h3 class="text-xl font-semibold text-sky-600 dark:text-sky-400 mb-2 pr-12">{{ concept.title }}</h3>
+                  <p class="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{{ concept.content }}</p>
+
+                  @if (concept.sources && concept.sources.length > 0) {
+                    <div class="mt-4 pt-4 border-t border-gray-600 dark:border-gray-700">
+                      <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-2">Sources:</h4>
+                      <ul class="list-disc list-inside space-y-1">
+                        @for (source of concept.sources; track source.uri) {
+                          <li>
+                            <a [href]="source.uri" target="_blank" rel="noopener noreferrer" class="text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:underline text-sm">
+                              {{ source.title || source.uri }}
+                            </a>
+                          </li>
+                        }
+                      </ul>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          } @else {
+            <div class="text-center bg-gray-100 dark:bg-gray-800/50 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-12">
+                <p class="text-gray-500">Your generated concepts will appear here. <br>Enter an idea and click "Generate" to start.</p>
+            </div>
+          }
+        } @else {
+            <div class="text-center bg-gray-100 dark:bg-gray-800/50 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-12">
+                <p class="text-gray-500">Your generated concepts will appear here. <br>Enter an idea and click "Generate" to start.</p>
+            </div>
+        }
+      </section>
+
+      <!-- Playground Section -->
+      <section class="animate-fade-in" style="animation-delay: 600ms;">
+        <div class="space-y-6">
+          <h2 class="text-2xl font-bold text-sky-600 dark:text-sky-300">Playground</h2>
+          <div class="relative bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-2 shadow-inner">
+             <div 
+              #playgroundContainer
+              (dragover)="onDragOver($event)"
+              (drop)="onDrop($event)"
+              class="w-full h-[600px] rounded-xl overflow-hidden cursor-grab active:cursor-grabbing">
+            </div>
+            <div class="absolute top-4 left-4 text-xs text-gray-400 dark:text-gray-500 pointer-events-none">
+              Drag concepts here. Pan with your mouse and zoom with the scroll wheel.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
