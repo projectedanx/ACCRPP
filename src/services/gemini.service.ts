@@ -174,18 +174,14 @@ export class GeminiService {
     if (!text) return [];
 
     const concepts: Concept[] = [];
-    // Split by the bold markdown for titles. It creates an array where titles and content alternate.
-    const parts = text.split('**').filter(p => p.trim() !== '');
+    const regex = /(?:^|\n)\*\*([^\n*]+)\*\*\s*([\s\S]*?)(?=(?:\n\*\*|$))/g;
+    let match;
 
-    // Iterate through parts, taking a title and content in pairs.
-    for (let i = 0; i < parts.length; i += 2) {
-      if (i + 1 < parts.length) {
-        // The title is at the even index, content at the odd index.
-        const title = parts[i].replace(/:$/, '').trim();
-        const content = parts[i + 1].trim();
-        if (title && content) {
-          concepts.push({ title, content });
-        }
+    while ((match = regex.exec(text)) !== null) {
+      const title = match[1].replace(/:$/, '').trim();
+      const content = match[2].trim();
+      if (title && content) {
+        concepts.push({ title, content });
       }
     }
     
