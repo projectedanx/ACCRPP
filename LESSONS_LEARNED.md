@@ -10,5 +10,5 @@ The repository demonstrates a common anti-pattern: attempting to use `process.en
 Logging `SymbolicScar.json` has proven valuable for tracking geometric deviations in logic. It forces the system (and the developer) to acknowledge when architectural intent (Pluriversal feature discovery) clashes with implementation realities (string splitting on `**`).
 
 ## 4. Future Action Items
-*   **Refactor Parsing Logic:** Develop a non-flattening response parser that can accommodate nested or contradictory structures without breaking the UI.
+*   **Refactor Parsing Logic (COMPLETED):** Refactored `parseStandardResponse` to use a non-destructive regex, resolving the string splitting bottleneck and preserving non-binary structure.
 *   **Secure API Key Management:** Implement a proper backend service to handle Gemini API requests, removing the `process.env` dependency from the frontend service.

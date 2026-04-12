@@ -17,5 +17,5 @@
 
 ## Semantic Parallax Zones (SPZs)
 
-*   **SPZ-Alpha (The Formatting Paradox):** The prompt demands the preservation of contradictions and avoidance of "Ontological Flattening," yet the code explicitly splits the response by `**` tokens to extract titles and content, completely flattening any non-binary structure the LLM might attempt to generate to represent the paradox.
+*   **SPZ-Alpha (The Formatting Paradox):** [RESOLVED] The prompt demands the preservation of contradictions and avoidance of "Ontological Flattening," yet the previous code explicitly split the response by `**` tokens. This has been resolved by replacing the naive string split with a non-destructive regex parser that correctly handles nested markdown elements without destroying the intended structure.
 *   **SPZ-Beta (The Environment Ghost):** The `gemini.service.ts` relies on `process.env`, a Node.js construct, in an Angular browser environment. The patch (`patch_process.py`) creates a phantom dimension where `process` exists just enough to avoid a crash, but not enough to provide true security or configuration management.
