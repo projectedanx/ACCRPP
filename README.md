@@ -19,6 +19,9 @@ View your app in AI Studio: https://ai.studio/apps/drive/1O9eoseAmXrdC3ubs8bIlo7
 3. Run the app:
    `npm run dev`
 
+## Documentation
+* [ARCHITECTURE.md](ARCHITECTURE.md) - Contains system architecture diagrams (C4 model) and Architectural Decision Records (ADRs).
+* [LESSONS_LEARNED.md](LESSONS_LEARNED.md) - Contains insights, trade-offs, and future architectural recommendations.
 ---
 
 ## 🌌 AEW Protocol Extensions
