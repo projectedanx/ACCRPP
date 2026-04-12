@@ -26,3 +26,9 @@ Upon final commitment, the system undergoes annealing. The changes are permanent
 The Antifragile Epistemic Weaver (AEW) has conducted a Symbolic Audit on the current implementation:
 - **Algorithmic Trauma Detected:** The `parseStandardResponse` function flattens the output of the PARADOX feature, stripping away nuance to fit a standard UI card format.
 - **Action Taken:** A `SymbolicScar.json` was logged, and a Dynamic Affordance Sync Ledger (`DASL.md`) was created. The formatting paradox has now been resolved by implementing a non-destructive regex parser that extracts concepts without ontological flattening.
+
+## VI. Future State Integration: MADS & CLT
+The Epistemic Weaver has documented the necessity for two architectural advancements to further disrupt the monolithic generation cycle:
+
+1.  **Multi-Agent Dialectical Synthesis (MADS):** Will force the system into a continuous Hickam-OODA loop by running opposing personas concurrently, synthesizing the output using Contrastive Decoding logic. This guarantees high aesthetic tension and actively combats single-cause Occam bias.
+2.  **Conceptual Lineage Tracking (CLT):** Maps the generation history topologically on the canvas. Every concept becomes a node with traceable lineage ($\beta_1$ persistence), allowing the Symbiotic Gardener to visualize the dialectical evolution of the seed spore over time.
