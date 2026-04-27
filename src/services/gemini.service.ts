@@ -5,9 +5,11 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC';
 
 export interface Concept {
+  id?: string;
+  parentId?: string | string[];
   title: string;
   content: string;
   sources?: { uri: string; title: string }[];
@@ -31,7 +33,8 @@ export class GeminiService {
   async generateConcepts(
     idea: string,
     type: GenerationType,
-    personaInstruction: string
+    personaInstruction: string,
+    secondaryPersonaInstruction?: string
   ): Promise<Concept[]> {
     try {
       let response: GenerateContentResponse;
@@ -157,6 +160,64 @@ export class GeminiService {
           });
           return this.parseStandardResponse(response);
 
+                case 'DIALECTIC':
+          if (!secondaryPersonaInstruction) {
+             throw new Error('Secondary persona required for dialectic synthesis');
+          }
+
+          const thesisId = Math.random().toString(36).substring(2, 9);
+          const antithesisId = Math.random().toString(36).substring(2, 9);
+          const synthesisId = Math.random().toString(36).substring(2, 9);
+
+          const thesisResponse = await this.ai.models.generateContent({
+            model,
+            contents: `Generate a conceptual thesis for this idea: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction} You are the Thesis Generator. Propose a strong, definitive concept for the user's idea. Do not summarize, state your position clearly.
+              Format your response as:
+              **Thesis**
+              [Thesis Description]`
+            }
+          });
+
+          const antithesisResponse = await this.ai.models.generateContent({
+            model,
+            contents: `Generate an antithetical concept that opposes or radically challenges this idea: "${idea}"`,
+            config: {
+              systemInstruction: `${secondaryPersonaInstruction} You are the Antithesis Generator. Radically challenge the core premise of the idea. Provide a counter-concept.
+              Format your response as:
+              **Antithesis**
+              [Antithesis Description]`
+            }
+          });
+
+          const parsedThesis = this.parseStandardResponse(thesisResponse);
+          const parsedAntithesis = this.parseStandardResponse(antithesisResponse);
+
+          const thesisText = parsedThesis[0]?.content || "No thesis generated.";
+          const antithesisText = parsedAntithesis[0]?.content || "No antithesis generated.";
+
+          const synthesisResponse = await this.ai.models.generateContent({
+            model,
+            contents: `Synthesize these opposing concepts into a novel, higher-order structure:
+            Thesis: ${thesisText}
+            Antithesis: ${antithesisText}`,
+            config: {
+               systemInstruction: `You are an Epistemic Synthesizer. Follow the Hickam-OODA recursive loop. Create a 'Martensite Initiation Quotient' synthesis that bridges the contradiction between the Thesis and Antithesis without flattening the tension. Provide a pluriversal higher-order concept.
+               Format your response as:
+               **Synthesis**
+               [Synthesis Description]`
+            }
+          });
+
+          const parsedSynthesis = this.parseStandardResponse(synthesisResponse);
+
+          return [
+            { id: thesisId, parentId: 'seed', title: 'Thesis', content: thesisText },
+            { id: antithesisId, parentId: 'seed', title: 'Antithesis', content: antithesisText },
+            { id: synthesisId, parentId: [thesisId, antithesisId], title: 'Synthesis (Hickam-OODA)', content: parsedSynthesis[0]?.content || "Synthesis failed." }
+          ];
+
         default:
           throw new Error('Invalid generation type');
       }
@@ -187,7 +248,7 @@ export class GeminiService {
     
     // Fallback if the primary parsing logic fails to produce any concepts.
     if (concepts.length === 0 && text) {
-        return [{ title: 'AI Response', content: text }];
+        return [{ id: Math.random().toString(36).substring(2, 9), parentId: 'seed', title: 'AI Response', content: text }];
     }
 
     return concepts;
@@ -212,6 +273,8 @@ export class GeminiService {
       }
       
       return [{
+          id: Math.random().toString(36).substring(2, 9),
+          parentId: 'seed',
           title: 'Web Research Summary',
           content: text,
           sources: sources

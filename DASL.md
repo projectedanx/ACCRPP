@@ -21,8 +21,8 @@
 *   **SPZ-Beta (The Environment Ghost):** The `gemini.service.ts` relies on `process.env`, a Node.js construct, in an Angular browser environment. The patch (`patch_process.py`) creates a phantom dimension where `process` exists just enough to avoid a crash, but not enough to provide true security or configuration management.
 
 **4. Future State & Forward-Thinking Mechanics (Post-Planning Phase):**
-*   **MADS (Multi-Agent Dialectical Synthesis):** The system must evolve to handle multi-persona state simultaneously. The assumption that the UI can only hold one persona context at a time must be broken to allow for synthetic generation (Thesis + Antithesis = Synthesis). This creates a new semantic zone where the LLM is expected to actively debate itself rather than just responding to the user.
-*   **CLT (Conceptual Lineage Tracking):** The current conceptual model treats each generated output as an isolated node on the canvas. The future state requires a graph-based mental model where nodes have ontological parents, and visual lines represent semantic lineage, moving the canvas from a mere whiteboard to a temporal knowledge graph.
+*   **MADS (Multi-Agent Dialectical Synthesis):** [IMPLEMENTED] The system now handles multi-persona state simultaneously via the 'Dialectical Synthesis' feature, breaking UI constraints to allow for synthetic generation (Thesis + Antithesis = Synthesis).
+*   **CLT (Conceptual Lineage Tracking):** [IMPLEMENTED] The canvas has moved from a whiteboard to a temporal knowledge graph. Nodes possess parent IDs, and semantic lineage is visually represented via connecting lines.
 
 ## SPZ-Gamma (The Lineage Void)
-Currently, generated concepts have no memory of their origin once dropped on the canvas. They are ontologically orphaned. Future implementations (CLT) must introduce `parentId` linkage, altering the `Concept` interface and Konva rendering logic to visualize the history of the "Collision Event".
+[RESOLVED] Generated concepts now possess ontological memory. `parentId` linkages have been introduced to the `Concept` interface, and Konva logic explicitly maps and visually renders the historical graph of Collision Events.

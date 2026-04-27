@@ -28,6 +28,8 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('playgroundContainer') playgroundContainer!: ElementRef;
   private stage: any;
   private layer: any;
+  private canvasNodes: { [id: string]: any } = {};
+  private canvasEdges: any[] = [];
 
   idea = signal<string>('A smart home device that curates playlists based on the weather and time of day.');
   selectedOption = signal<GenerationType>('EXPAND');
@@ -46,8 +48,8 @@ export class AppComponent implements AfterViewInit {
     { id: 'optimist', name: 'Boundless Optimist', instruction: 'You are an optimistic AI assistant. You should focus on the positive potential, opportunities, and adopt an encouraging and enthusiastic tone.' },
     { id: 'expert', name: 'Industry Expert', instruction: 'You are a seasoned industry expert. You should provide deep, insightful analysis, use professional terminology, and focus on market viability and strategic positioning.' },
   ];
-  selectedPersonaId = signal<string>(this.personas[0].id); // Updated to default index below if needed
-  // Using [1] instead of [0] due to the insertion
+  selectedPersonaId = signal<string>(this.personas[1].id);
+  selectedAntithesisPersonaId = signal<string>(this.personas[2].id);
 
   constructor() {
     this.isDarkMode.set(this.getInitialTheme());
@@ -124,6 +126,12 @@ export class AppComponent implements AfterViewInit {
       description: 'Discover pluriversal features by resolving conceptual paradoxes via Z-Axis inference.',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" /></svg>`
     },
+    {
+      id: 'DIALECTIC',
+      title: 'Dialectical Synthesis',
+      description: 'Generate opposing concepts from two personas and synthesize them (MADS).',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>`
+    },
   ];
 
   selectOption(optionId: GenerationType) {
@@ -142,10 +150,14 @@ export class AppComponent implements AfterViewInit {
       const selectedPersona = this.personas.find(p => p.id === this.selectedPersonaId());
       const personaInstruction = selectedPersona ? selectedPersona.instruction : this.personas[0].instruction;
 
+      const selectedAntithesisPersona = this.personas.find(p => p.id === this.selectedAntithesisPersonaId());
+      const secondaryPersonaInstruction = selectedAntithesisPersona ? selectedAntithesisPersona.instruction : this.personas[0].instruction;
+
       const generatedConcepts = await this.geminiService.generateConcepts(
         this.idea(),
         this.selectedOption(),
-        personaInstruction
+        personaInstruction,
+        this.selectedOption() === 'DIALECTIC' ? secondaryPersonaInstruction : undefined
       );
       this.results.set(generatedConcepts);
     } catch (e) {
@@ -186,6 +198,11 @@ export class AppComponent implements AfterViewInit {
     this.layer = new Konva.Layer();
     this.stage.add(this.layer);
     this.updateCanvasTheme(); // Set initial theme
+
+    // Clear state on re-init
+    this.canvasNodes = {};
+    this.canvasEdges.forEach(edge => edge.destroy());
+    this.canvasEdges = [];
 
     this.stage.on('wheel', (e: any) => {
       e.evt.preventDefault();
@@ -258,6 +275,15 @@ export class AppComponent implements AfterViewInit {
 
     try {
       const concept: Concept = JSON.parse(conceptData);
+
+      // Auto-render seed node if canvas is empty and dropped concept is a direct child
+      if (Object.keys(this.canvasNodes).length === 0 && (concept.parentId === 'seed' || (Array.isArray(concept.parentId) && concept.parentId.includes('seed')))) {
+         this.createConceptCard(
+             { id: 'seed', title: 'Seed Idea', content: this.idea() },
+             { x: relativePos.x - 300, y: relativePos.y }
+         );
+      }
+
       this.createConceptCard(concept, relativePos);
     } catch (e) {
       console.error('Failed to parse dropped concept data:', e);
@@ -269,16 +295,37 @@ export class AppComponent implements AfterViewInit {
       console.error('Attempted to create a card with invalid concept data:', concept);
       return;
     }
+
+    // Check if node already exists
+    if (concept.id && this.canvasNodes[concept.id]) {
+        return; // Prevent duplicate rendering
+    }
+
+    // Fallback ID if missing
+    const id = concept.id || Math.random().toString(36).substring(2, 9);
+
       
     const cardWidth = 250;
     const padding = 12;
     const isDark = this.isDarkMode();
 
     const group = new Konva.Group({
+        id: id,
         x: position.x,
         y: position.y,
         draggable: true,
     });
+
+    // Store metadata
+    group.setAttr('conceptData', concept);
+
+    group.on('dragmove', () => {
+       this.updateEdges();
+    });
+    group.on('dragend', () => {
+       this.updateEdges();
+    });
+
 
     const title = new Konva.Text({
         name: 'title',
@@ -318,5 +365,63 @@ export class AppComponent implements AfterViewInit {
 
     group.add(background, title, content);
     this.layer.add(group);
+
+    this.canvasNodes[id] = group;
+    this.updateEdges();
+  }
+
+  private updateEdges() {
+      // Clear existing edges
+      this.canvasEdges.forEach(edge => edge.destroy());
+      this.canvasEdges = [];
+
+      const isDark = this.isDarkMode();
+      const strokeColor = isDark ? '#6b7280' : '#9ca3af';
+
+      Object.values(this.canvasNodes).forEach(node => {
+          const conceptData = node.getAttr('conceptData');
+          if (!conceptData || !conceptData.parentId) return;
+
+          let parentIds: string[] = [];
+          if (Array.isArray(conceptData.parentId)) {
+              parentIds = conceptData.parentId;
+          } else {
+              parentIds = [conceptData.parentId];
+          }
+
+          parentIds.forEach(pId => {
+             const parentNode = this.canvasNodes[pId];
+             if (parentNode) {
+                 // Calculate centers
+                 const pRect = parentNode.find('Rect')[0];
+                 const cRect = node.find('Rect')[0];
+
+                 const pWidth = pRect.width();
+                 const pHeight = pRect.height();
+                 const cWidth = cRect.width();
+                 const cHeight = cRect.height();
+
+                 const px = parentNode.x() + pWidth; // Right edge of parent
+                 const py = parentNode.y() + (pHeight / 2);
+                 const cx = node.x(); // Left edge of child
+                 const cy = node.y() + (cHeight / 2);
+
+                 // Draw line
+                 const arrow = new Konva.Arrow({
+                     points: [px, py, cx, cy],
+                     pointerLength: 10,
+                     pointerWidth: 10,
+                     fill: strokeColor,
+                     stroke: strokeColor,
+                     strokeWidth: 2,
+                 });
+
+                 this.layer.add(arrow);
+                 // Send to back so lines draw under cards
+                 arrow.moveToBottom();
+                 this.canvasEdges.push(arrow);
+             }
+          });
+      });
   }
 }
