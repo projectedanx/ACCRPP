@@ -247,7 +247,7 @@ export class GeminiService {
           `;
 
           response = await this.ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model,
             contents: ragPrompt,
             config: {
               systemInstruction: personaInstruction,
