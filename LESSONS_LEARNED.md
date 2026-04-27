@@ -36,3 +36,8 @@ Logging `SymbolicScar.json` has proven valuable for tracking geometric deviation
 
 ## 5. Product Planning Integration & Agentic Telemetry
 The recent Product Planning phase demonstrated the value of combining standard requirement decomposition with advanced Epistemic Governance. By analyzing the system through the lens of the "Tactile Architect" and "Hickam's Dictum", we identified critical gaps (monoculture and ontological orphanhood). Defining the MADS (Multi-Agent Dialectical Synthesis) and CLT (Conceptual Lineage Tracking) features ensures the product roadmap is directly aligned with the core goal of preventing "epistemic monoculture". Product planning in this environment is not just about UI features, but about engineering cognitive tension and preserving relational history.
+
+
+## 6. MADS & CLT Implementation Insights
+**Observation:** Executing Dialectical Synthesis (MADS) required bypassing the single-shot generation pipeline. Implementing CLT required migrating the canvas from a visual-only representation to a state-driven graph representation.
+**Lesson Learned:** The Hickam-OODA loop requires discrete LLM calls to prevent context collapse: Thesis and Antithesis must be generated in isolation before Synthesis occurs. Furthermore, maintaining visual graph edges in Konva requires tight coupling between logical state (node mapping) and the imperative drawing lifecycle (handling drag events).
