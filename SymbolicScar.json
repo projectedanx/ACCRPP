@@ -19,6 +19,16 @@
       "structural_contradiction": "The application promises a 'Pluriversal Environment' but currently operates on a strictly linear, single-agent prompt/response paradigm (monoculture). Furthermore, concepts dropped onto the canvas lose their relational history, becoming isolated fragments rather than parts of an evolving cognitive topology.",
       "trigger": "Product Planning Discovery Phase: Identified gap between architectural ambition (Paraconsistent Synthesis) and actual structural implementation.",
       "resolution_status": "Resolved via MADS integration (Dual-Persona Dialectic) and CLT implementation (Konva node/edge graph lineage)."
+    },
+    {
+      "scar_id": "SCAR-AGENTS-MD-DISSONANCE-001",
+      "timestamp": "2026-04-27T10:27:37.258862Z",
+      "CFDI": 0.9,
+      "BAI": "High",
+      "geometric_deviation": "Framework Dissonance: Next.js/Firestore vs Angular/Gemini",
+      "structural_contradiction": "The system received an AGENTS.md file defining a server-side Next.js agent interacting with Firestore and OpenAI. The existing architecture is a client-side Angular application using the Gemini SDK. This represents a severe paradigm clash.",
+      "trigger": "User request to integrate AGENTS.md specifying a 'nextjs-frontend-rag-agent'.",
+      "resolution_status": "Absorbed conceptually. Implemented RAG-like synthesis via Gemini Context, mapped within SPZ-Delta."
     }
   ]
 }
