@@ -32,3 +32,10 @@ The Epistemic Weaver has documented the necessity for two architectural advancem
 
 1.  **Multi-Agent Dialectical Synthesis (MADS):** Will force the system into a continuous Hickam-OODA loop by running opposing personas concurrently, synthesizing the output using Contrastive Decoding logic. This guarantees high aesthetic tension and actively combats single-cause Occam bias.
 2.  **Conceptual Lineage Tracking (CLT):** Maps the generation history topologically on the canvas. Every concept becomes a node with traceable lineage ($\beta_1$ persistence), allowing the Symbiotic Gardener to visualize the dialectical evolution of the seed spore over time.
+
+
+## VII. The Reflector Archetype & Grounded Synthesis
+Following the ingestion of the `AGENTS.md` schema, the system has integrated the **Reflector + ToolUser** composite archetype.
+- **Action:** Implementation of `RAG_SYNTHESIS`.
+- **Validation Phase Active:** The system now supports a generative mode that explicitly enforces fact-checking against a provided context (the current canvas nodes) and mandates citation generation.
+- **Architectural Shift:** Moves the system from pure generative expansion into grounded, context-aware synthesis.

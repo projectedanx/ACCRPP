@@ -26,3 +26,8 @@
 
 ## SPZ-Gamma (The Lineage Void)
 [RESOLVED] Generated concepts now possess ontological memory. `parentId` linkages have been introduced to the `Concept` interface, and Konva logic explicitly maps and visually renders the historical graph of Collision Events.
+
+
+## SPZ-Delta (The Retrieval-Synthesis Gap)
+**Context:** The architecture was requested to integrate a Next.js/Firestore RAG agent definition (`AGENTS.md`) into a purely client-side Angular/Gemini SPA.
+**Resolution:** This framework dissonance was absorbed conceptually. The 'Reflector Agent' pattern was implemented not via a remote vector database, but by grounding the LLM in the current state of the Konva canvas (the generated `Concept` cards). The `RAG_SYNTHESIS` option instructs the Gemini model to synthesize answers strictly based on this client-side context, mimicking the retrieval and validation phases (including generated citations linking back to the canvas node IDs) defined in the Next.js specification without requiring a backend architectural shift.

@@ -5,7 +5,7 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS';
 
 export interface Concept {
   id?: string;
@@ -34,7 +34,8 @@ export class GeminiService {
     idea: string,
     type: GenerationType,
     personaInstruction: string,
-    secondaryPersonaInstruction?: string
+    secondaryPersonaInstruction?: string,
+    canvasContext?: string
   ): Promise<Concept[]> {
     try {
       let response: GenerateContentResponse;
@@ -218,6 +219,43 @@ export class GeminiService {
             { id: synthesisId, parentId: [thesisId, antithesisId], title: 'Synthesis (Hickam-OODA)', content: parsedSynthesis[0]?.content || "Synthesis failed." }
           ];
 
+
+        case 'RAG_SYNTHESIS':
+          const ragPrompt = `
+          You are a Reflector Agent. Your goal is to answer the user's query using ONLY the provided canvas context.
+
+          USER QUERY: "${idea}"
+
+          CANVAS CONTEXT:
+          ${canvasContext || '[]'}
+
+          CONSTRAINTS:
+          - You MUST cite sources (using the provided concept IDs) for all factual claims.
+          - If the retrieved context does NOT answer the query, return {"success": true, "answer": null, "suggestion": "Try adding more related concepts to the canvas.", "citations": []}
+          - Do NOT invent facts beyond the provided context.
+          - Output format MUST be JSON matching the schema below.
+
+          OUTPUT SCHEMA:
+          {
+            "success": true,
+            "answer": "synthesized response string",
+            "confidence": 0.9,
+            "citations": [
+               { "doc_id": "id from context", "text_snippet": "exact quote" }
+            ]
+          }
+          `;
+
+          response = await this.ai.models.generateContent({
+            model,
+            contents: ragPrompt,
+            config: {
+              systemInstruction: personaInstruction,
+              responseMimeType: "application/json",
+            },
+          });
+          return this.parseRagResponse(response);
+
         default:
           throw new Error('Invalid generation type');
       }
@@ -227,6 +265,42 @@ export class GeminiService {
         throw new Error(`Failed to generate content: ${error.message}`);
       }
       throw new Error('An unknown error occurred while communicating with the AI.');
+    }
+  }
+
+
+  private parseRagResponse(response: GenerateContentResponse): Concept[] {
+    const text = response.text;
+    if (!text) return [];
+
+    try {
+      const data = JSON.parse(text);
+      if (!data.success || !data.answer) {
+         return [{
+             id: Math.random().toString(36).substring(2, 9),
+             parentId: 'seed',
+             title: 'RAG Synthesis Failed',
+             content: data.suggestion || "Insufficient context to answer the query.",
+         }];
+      }
+
+      let contentStr = data.answer;
+      if (data.citations && data.citations.length > 0) {
+         contentStr += "\n\n---\n**Citations:**\n";
+         data.citations.forEach((cite: any, index: number) => {
+             contentStr += `[${index + 1}] Source ID: ${cite.doc_id} - "${cite.text_snippet}"\n`;
+         });
+      }
+
+      return [{
+          id: Math.random().toString(36).substring(2, 9),
+          parentId: 'seed', // Ideally, this would map to citation IDs for graph connections
+          title: 'Reflector Synthesis (Confidence: ' + (data.confidence * 100).toFixed(0) + '%)',
+          content: contentStr,
+      }];
+    } catch (e) {
+      console.error("Failed to parse RAG JSON", e);
+      return [{ title: 'Error', content: 'Failed to parse JSON response.' }];
     }
   }
 

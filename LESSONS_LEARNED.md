@@ -41,3 +41,9 @@ The recent Product Planning phase demonstrated the value of combining standard r
 ## 6. MADS & CLT Implementation Insights
 **Observation:** Executing Dialectical Synthesis (MADS) required bypassing the single-shot generation pipeline. Implementing CLT required migrating the canvas from a visual-only representation to a state-driven graph representation.
 **Lesson Learned:** The Hickam-OODA loop requires discrete LLM calls to prevent context collapse: Thesis and Antithesis must be generated in isolation before Synthesis occurs. Furthermore, maintaining visual graph edges in Konva requires tight coupling between logical state (node mapping) and the imperative drawing lifecycle (handling drag events).
+
+
+## 7. Framework Dissonance & Adaptive Integration
+**Observation:** The system received an `AGENTS.md` specifying a server-side Next.js agent architecture while operating within a client-side Angular context.
+**Lesson Learned:** Architectural governance must be flexible enough to absorb the *intent* of a requested pattern even when the *technological stack* is incompatible.
+**Actionable Insight:** The Reflector+ToolUser archetype from the Next.js spec was successfully adapted into the Angular client by using the existing canvas state as the 'retrieved documents' context, allowing the Gemini LLM to perform grounded synthesis (RAG) locally.
