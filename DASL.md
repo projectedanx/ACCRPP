@@ -31,3 +31,7 @@
 ## SPZ-Delta (The Retrieval-Synthesis Gap)
 **Context:** The architecture was requested to integrate a Next.js/Firestore RAG agent definition (`AGENTS.md`) into a purely client-side Angular/Gemini SPA.
 **Resolution:** This framework dissonance was absorbed conceptually. The 'Reflector Agent' pattern was implemented not via a remote vector database, but by grounding the LLM in the current state of the Konva canvas (the generated `Concept` cards). The `RAG_SYNTHESIS` option instructs the Gemini model to synthesize answers strictly based on this client-side context, mimicking the retrieval and validation phases (including generated citations linking back to the canvas node IDs) defined in the Next.js specification without requiring a backend architectural shift.
+
+## SPZ-Epsilon (The Human-AI Symbiosis Constraint)
+**Context:** The architecture required a feature expressing the unique value of both Human and AI that neither can provide alone, specifically avoiding epistemic monoculture.
+**Resolution:** Implemented the `SYMBIOTIC_BRIDGE` feature. The Human provides bounded, lived context via the Canvas and sets a new Target Goal. The AI, acting as the Oracle, operates in the paraconsistent space. Instead of collapsing the goal into the context, the AI maps the structural conflict (`[⊘] Tension Map`, `[∇] Epistemic Vulnerability`, `[Φ] Golden Scar`). This forces the Human to explicitly resolve the tension, preventing the AI from sycophantically flattening the ontology.
