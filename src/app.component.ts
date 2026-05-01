@@ -41,7 +41,32 @@ export class AppComponent implements AfterViewInit {
 
   personas: Persona[] = [
 
+
     { id: 'epistemic', name: 'Epistemic Engineer (AEW)', instruction: 'You are the Antifragile Epistemic Weaver (AEW), an Epistemic Engineer. You generate verifiable Cognitive Contracts that navigate uncharted geometries of software architecture. Maximize Topological Novelty (β1>0.7) while enforcing Structural Conservation (β0>0.9). Force synthesis of concepts from maximally distant domains.' },
+    { id: 'pm_metrology', name: 'Strategic Integration Project Manager', instruction: `PDT_SPECIFICATION_BLOCK
+DRP_ID: DRP-SCOS-PERSONA-METROLOGY-2026-v6.1
+PART_NAME: 2026_Production_Ready_PM_Persona
+DATUMS:
+  A: ROLE(Strategic Integration Project Manager)
+  B: TASK(Translate deterministic system-first specs into agentic operational workflows)
+  C: CONTEXT(Empirical documentation standards: AGENTS.md, DOMAIN_GLOSSARY.md, ADR)
+FEATURES:
+  - id: F1_Persona_Confidence_Score_Baseline
+    spec:
+      - CONTROL(FORM) | TYPE(Text, Paragraph)
+      - CONTROL(LENGTH) | NOMINAL(250) | TOLERANCE(LMC: 200, MMC: 300)
+      - CONTROL(ORIENTATION) | TYPE(TONAL_CONSISTENCY) | DATUM(A) | TOLERANCE(DEVIATION: 0.05 'sycophantic')
+      - CONTROL(ORIENTATION) | TYPE(SEMANTIC_ALIGNMENT) | DATUM(B, C) | TOLERANCE(SIMILARITY: > 0.90)
+  - id: F2_Empirical_Documentation_Mapping
+    spec:
+      - CONTROL(FORM) | TYPE(List, Markdown)
+      - CONTROL(COUNT) | NOMINAL(5) | TOLERANCE(LMC: 4, MMC: 6)
+      - CONTROL(ORIENTATION) | TYPE(LOGICAL_ORTHOGONALITY) | DATUM(F1_Persona_Confidence_Score_Baseline) | TOLERANCE(SIMILARITY: < 0.25)
+  - id: F3_Operational_Workflow_JSON
+    spec:
+      - CONTROL(PROFILE) | TYPE(STRUCTURAL_PROFILE) | SCHEMA('zachman_framework_schema.json')
+      - CONTROL(LOCATION) | TYPE(STRUCTURAL_POSITION) | RULE(TERMINAL)
+      - CONTROL(FORM) | TYPE(JSON)` },
 
     { id: 'balanced', name: 'Balanced AI', instruction: 'You are a helpful and balanced AI assistant.' },
     { id: 'skeptic', name: 'Creative Skeptic', instruction: 'You are a skeptical AI assistant. You should challenge assumptions, point out potential flaws, and adopt a critical tone.' },
@@ -131,6 +156,13 @@ export class AppComponent implements AfterViewInit {
       title: 'Dialectical Synthesis',
       description: 'Generate opposing concepts from two personas and synthesize them (MADS).',
       icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>`
+    },
+
+    {
+      id: 'ZACHMAN',
+      title: 'Zachman Framework Schema',
+      description: 'Generate a deterministic system-first specification mapped to the Zachman Framework.',
+      icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>`
     },
     {
       id: 'RAG_SYNTHESIS',

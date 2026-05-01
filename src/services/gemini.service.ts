@@ -5,7 +5,7 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN';
 
 export interface Concept {
   id?: string;
@@ -139,6 +139,30 @@ export class GeminiService {
           });
           return this.parseStandardResponse(response);
 
+
+
+        case 'ZACHMAN':
+          response = await this.ai.models.generateContent({
+            model,
+            contents: `Generate a deterministic system-first specification mapped to the Zachman Framework for this idea: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction} You are a Strategic Integration Project Manager. Your goal is to translate the idea into a strict Zachman Framework architecture matrix.
+              For each row (Planner, Owner, Designer, Builder) provide a title and a paragraph explaining the perspective, focusing on deterministic structure over narrative.
+              Format your response as:
+              **Contextual (Planner)**
+              [Scope and context description]
+
+              **Conceptual (Owner)**
+              [Business concepts and models]
+
+              **Logical (Designer)**
+              [System logic and architecture]
+
+              **Physical (Builder)**
+              [Technology and implementation details]`,
+            },
+          });
+          return this.parseStandardResponse(response);
 
         case 'PARADOX':
           response = await this.ai.models.generateContent({
