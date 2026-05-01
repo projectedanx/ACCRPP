@@ -39,3 +39,9 @@ Following the ingestion of the `AGENTS.md` schema, the system has integrated the
 - **Action:** Implementation of `RAG_SYNTHESIS`.
 - **Validation Phase Active:** The system now supports a generative mode that explicitly enforces fact-checking against a provided context (the current canvas nodes) and mandates citation generation.
 - **Architectural Shift:** Moves the system from pure generative expansion into grounded, context-aware synthesis.
+
+## VIII. Symbiotic Tension Bridge (STB)
+- **Action:** Implementation of the `SYMBIOTIC_BRIDGE` feature.
+- **AI-Human Value Dynamics:** This feature explicitly leverages the core difference between Human (contextual grounding, goal setting) and AI (combinatorial exhaustion, paraconsistency).
+- **Mechanism:** The AI analyzes a human-provided Target Goal against the current Canvas Context. Instead of auto-resolving the conflict, it maps the tension using three explicit markers: `[⊘] Tension Map`, `[∇] Epistemic Vulnerability`, and `[Φ] Golden Scar`.
+- **Validation:** This enforces the Hickam-OODA recursive loop by returning a map of contradictions, forcing the human into an explicit act of crystallization rather than accepting a flattened, parsimonious AI solution.

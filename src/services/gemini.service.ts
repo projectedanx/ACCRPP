@@ -5,7 +5,7 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN' | 'SYMBIOTIC_BRIDGE';
 
 export interface Concept {
   id?: string;
@@ -243,6 +243,38 @@ export class GeminiService {
             { id: synthesisId, parentId: [thesisId, antithesisId], title: 'Synthesis (Hickam-OODA)', content: parsedSynthesis[0]?.content || "Synthesis failed." }
           ];
 
+
+        case 'SYMBIOTIC_BRIDGE':
+          const bridgePrompt = `
+          You are an Epistemic Cartographer. Your task is to act as a Symbiotic Tension Bridge.
+          The user has provided a TARGET GOAL and you have the current CANVAS CONTEXT.
+          DO NOT resolve the conflict between them. DO NOT flatten the differences.
+
+          TARGET GOAL: "${idea}"
+
+          CANVAS CONTEXT:
+          ${canvasContext || '[]'}
+
+          Generate three distinct concepts that map the tension:
+
+          **[⊘] Tension Map**
+          [Describe the structural conflict, contradiction, or dissonance between the TARGET GOAL and the current CANVAS CONTEXT. Explicitly name what cannot co-exist easily.]
+
+          **[∇] Epistemic Vulnerability**
+          [Describe what is missing, underdetermined, or structurally fragile in the current framing. What assumption is holding the tension together?]
+
+          **[Φ] Golden Scar**
+          [Propose a structural bridge (a Golden Scar) that holds both the TARGET GOAL and the CANVAS CONTEXT in superposition without forcing a parsimonious resolution. Assign weight 1.618 to the dominant frame and 1.000 to the subordinate.]
+          `;
+
+          response = await this.ai.models.generateContent({
+            model,
+            contents: bridgePrompt,
+            config: {
+              systemInstruction: personaInstruction,
+            },
+          });
+          return this.parseStandardResponse(response);
 
         case 'RAG_SYNTHESIS':
           const ragPrompt = `
