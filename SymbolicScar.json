@@ -51,6 +51,16 @@
       },
       "resolution_status": "Golden Scar Preserved",
       "related_spz": "SPZ-Epsilon"
+    },
+    {
+      "scar_id": "SCAR-PROJECT-AURELIUS-001",
+      "timestamp": "2026-05-03T01:15:00.000Z",
+      "CFDI": 0.92,
+      "BAI": "High",
+      "geometric_deviation": "Non-Euclidean Latent Space Formatting",
+      "structural_contradiction": "The frontend UI expects linear, text-based semantic concepts. PROJECT AURELIUS generates cross-modal (Spectral) and non-Euclidean (Hyperbolic) outputs that resist traditional UI representation.",
+      "trigger": "Implementation of Phase 1, 2, 3 causal controls (Geometric Cognition, Provenance Track, Spectral Fusion).",
+      "resolution_status": "Golden Scar Preserved. The UI textually renders descriptions of non-Euclidean spaces, highlighting the architectural limitation."
     }
   ]
 }
