@@ -1,37 +1,37 @@
 {
-  "hash": "1318a179",
+  "hash": "feb42789",
   "configHash": "9629194a",
-  "lockfileHash": "18ee5cc9",
-  "browserHash": "4ea300f1",
+  "lockfileHash": "f6063a5f",
+  "browserHash": "f3ac7995",
   "optimized": {
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "954ab977",
+      "fileHash": "421ec38d",
       "needsInterop": false
     },
     "@angular/compiler": {
       "src": "../../../../../../node_modules/@angular/compiler/fesm2022/compiler.mjs",
       "file": "@angular_compiler.js",
-      "fileHash": "ecab1c3d",
+      "fileHash": "75e49aad",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "3f27d49e",
+      "fileHash": "7eb5d785",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "df5a2028",
+      "fileHash": "8711238d",
       "needsInterop": false
     },
     "@google/genai": {
       "src": "../../../../../../node_modules/@google/genai/dist/web/index.mjs",
       "file": "@google_genai.js",
-      "fileHash": "139c674b",
+      "fileHash": "a284b608",
       "needsInterop": false
     }
   },

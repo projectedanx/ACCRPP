@@ -1,0 +1,12 @@
+- [ ] Define new `GenerationType` values in `src/services/gemini.service.ts`.
+- [ ] Implement `GEOMETRIC_COGNITION` logic in `gemini.service.ts`.
+- [ ] Implement `PROVENANCE_TRACK` logic in `gemini.service.ts`.
+- [ ] Implement `SPECTRAL_FUSION` logic in `gemini.service.ts`.
+- [ ] Add 'Non-Euclidean Sculptor', 'Autonomous Provenance Tracker', and 'Hyper-Spectral Synthesizer' to `personas` array in `src/app.component.ts`.
+- [ ] Add corresponding option buttons to `options` array in `src/app.component.ts`.
+- [ ] Update `COGNITIVE_CONTRACT.md` with PROJECT_AURELIUS principles.
+- [ ] Update `LESSONS_LEARNED.md` with project insights.
+- [ ] Add an entry to `SymbolicScar.json`.
+- [ ] Ensure all code changes are verified to not break existing functionality.
+- [ ] Complete pre-commit checks.
+- [ ] Commit with JSON scaffold as requested.

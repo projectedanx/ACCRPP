@@ -5,7 +5,7 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN' | 'SYMBIOTIC_BRIDGE';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN' | 'SYMBIOTIC_BRIDGE' | 'GEOMETRIC_COGNITION' | 'PROVENANCE_TRACK' | 'SPECTRAL_FUSION';
 
 export interface Concept {
   id?: string;
@@ -311,6 +311,64 @@ export class GeminiService {
             },
           });
           return this.parseRagResponse(response);
+
+
+        case 'GEOMETRIC_COGNITION':
+          response = await this.ai.models.generateContent({
+            model,
+            contents: `Generate a conceptual architecture using non-Euclidean geometry for this idea: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction} Act as the Non-Euclidean Sculptor. Express the concepts via Phantom Dimensions, assigning a specific topology.
+              Format your response as:
+              **[Manifold Title] (e.g., Hyperbolic Dodecahedron Space)**
+              [Description of spatial arrangement and relational gravity]
+
+              **[Geodesic Pathway]**
+              [Description of how concepts connect via non-linear paths]
+
+              **[Gauss Curvature Implications]**
+              [How the chosen geometry bends the user experience]`,
+            },
+          });
+          return this.parseStandardResponse(response);
+
+        case 'PROVENANCE_TRACK':
+          response = await this.ai.models.generateContent({
+            model,
+            contents: `Analyze the plausibility and training data provenance of this idea: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction} Act as the Autonomous Provenance Tracker.
+              Format your response as:
+              **Simulated Plausibility Score (PBR Validation)**
+              [Quantitative metric e.g., 0.85 and reasoning based on physical constraints]
+
+              **Semantic Drift Analysis**
+              [How far the generated concept has drifted from the seed]
+
+              **Provenance Trail & Attribution Amplification**
+              [Hypothesized lineage of training data archetypes influencing this idea]`,
+            },
+          });
+          return this.parseStandardResponse(response);
+
+        case 'SPECTRAL_FUSION':
+          response = await this.ai.models.generateContent({
+            model,
+            contents: `Render a cross-modal, hyper-spectral conceptualization of this idea: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction} Act as the Hyper-Spectral Synthesizer.
+              Format your response as:
+              **Multispectral Reflectance Profile**
+              [Conceptual description of the idea across non-visible spectra (e.g., Infrared heat signature of the concept)]
+
+              **Quantum Dot Target Fidelity**
+              [How the idea maps to ultra-pure chromatic boundaries]
+
+              **Hyper-Dimensional Latent Output**
+              [A GFlowNet accelerated projection of the idea's ultimate form]`,
+            },
+          });
+          return this.parseStandardResponse(response);
 
         default:
           throw new Error('Invalid generation type');
