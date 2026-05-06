@@ -39,3 +39,8 @@ As part of the Epistemic Weaver's continuous oversight, the following documentat
 - `SymbolicScar.json`: Logs geometric deviations and algorithmic trauma (e.g., the formatting paradox).
 - `DASL.md` (Dynamic Affordance Sync Ledger): Documents the Computational Shared Mental Model and Semantic Parallax Zones.
 - `LESSONS_LEARNED.md`: Summarizes core findings regarding UI rigidity vs. fluid ontology and client-side environment variable handling.
+
+## 🔄 Agentic Inversion Protocol
+The application has been further refined via the **Agentic Inversion Protocol**.
+- **Human-AI Symbiosis:** We actively invert the dynamic from "AI as Solver" to "AI as Structural Mapper." The AI does not resolve contradictions but explicitly maps them via the `SYMBIOTIC_BRIDGE`, leveraging the Failure-Informed Prompt Inversion (FIPI) from the VULCAN constraints.
+- **Documentation:** See `agentic_inversion_protocol/STRATEGY.md` and `agentic_inversion_protocol/IMPLEMENTATION_CHECKLIST.md` for the rigorous implementation plan and metrology standards.
