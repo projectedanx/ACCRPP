@@ -52,3 +52,8 @@ Following the ingestion of the `AGENTS.md` schema, the system has integrated the
 - **Phase 2 (Agentic Provenance):** Addition of the `PROVENANCE_TRACK` pipeline and the 'Provenance Oracle'. Establishes a "causal chain of control" by forcing the model to hypothesize on its own semantic drift and training data origins, while simulating a physical plausibility score.
 - **Phase 3 (Cross-Modal Fusion):** Addition of the `SPECTRAL_FUSION` pipeline and the 'Hyper-Spectral Synthesizer'. Moves generative text mapping out of the visible spectrum and into hypothetical multi-spectral reflectance profiles.
 - **Validation:** These features invert the typical "solve my prompt" paradigm into an Agentic Telemetry loop where the AI maps the structural boundaries of the prompt itself.
+
+## X. Agentic Inversion Protocol (VULCAN Integration)
+- **Action:** Integration of the Agentic Inversion Strategy based on VULCAN architectural constraints.
+- **Validation Phase Active:** The system explicitly implements the AI-Human complementary dynamic. The AI is constrained to provide topological mapping of contradictions (Paraconsistency), while the Human must provide the contextual grounding and resolution.
+- **Architectural Shift:** Moves the system away from auto-resolution and sycophantic generation towards Failure-Informed Prompt Inversion, rigorously mapped via `agentic_inversion_protocol/STRATEGY.md`.
