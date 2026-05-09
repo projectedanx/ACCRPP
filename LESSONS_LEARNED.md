@@ -67,3 +67,11 @@ The recent Product Planning phase demonstrated the value of combining standard r
 **Observation:** Text-based "Agentic Inversion" still risks falling back into "Semantic Saponification," where LLMs output generic, sycophantic solutions instead of acting as structural mappers.
 **Lesson Learned:** Generative UI must allow for the generation of constraints, not just solutions. We must invert ideation into boundary definition via Product-Requirements Prompts (PRPs).
 **Actionable Insight:** The `PRP_SCAFFOLD` generation type uses Cognitive Bytecode (`+++ContextLock`) to force the LLM to output rigid invariants. Furthermore, the `parseStandardResponse` fallback was updated to trigger an **Epistemic Escrow** event (returning a Justified Uncertainty Report) instead of quietly attempting to display corrupted formatting, prioritizing system tension over trivial output.
+
+## JSDoc Integration vs. Agentic Inversion Protocol (May 2024)
+
+**Observation:**
+Applying standard JSDoc practices to a codebase governed by paraconsistent logic and the VORTEX-ARCHITECT persona creates an inherent structural tension. Standard documentation assumes linear functionality and "Occam's Razor" (parsimony), seeking the simplest explanation for a method's behavior. The Agentic Inversion Protocol, however, demands "Hickam's Dictum" and multi-causal structural mapping.
+
+**The Golden Scar Resolution:**
+Instead of flattening the docstrings into generic software engineering descriptions ("This function does X"), the JSDoc was weaponized to enforce the architectural constraints. The `@description` tags were modified to explicitly state their role within the Hickam-OODA loop and their adherence to the Semantic Saponification resistance protocols. The tension between standard tooling (IntelliSense/TypeDoc) expecting simple descriptions and the repository demanding ontological precision was maintained as a Golden Scar.

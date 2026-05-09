@@ -22,6 +22,13 @@ interface Persona {
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+/**
+ * @class AppComponent
+ * @description The core structural mapper and dialectical interface for the AI Creative Concept Partner.
+ * Orchestrates the recursive OODA loop (Observe, Orient, Decide, Act) by managing the Canvas Context
+ * and triggering epistemic inversions via the GeminiService. Maintains the Golden Scar protocol
+ * by holding contradictory concepts in superposition.
+ */
 export class AppComponent implements AfterViewInit {
   private readonly geminiService = inject(GeminiService);
 
@@ -112,6 +119,13 @@ FEATURES:
     });
   }
 
+  /**
+   * @method ngAfterViewInit
+   * @description Lifecycle hook that initializes the topological canvas space.
+   * Invokes the Konva stage generation to establish the physical boundaries of the
+   * Conceptual Shared Mental Model.
+   * @returns {void}
+   */
   ngAfterViewInit() {
     this.initializeCanvas();
   }
@@ -223,10 +237,25 @@ FEATURES:
 
   ];
 
+  /**
+   * @method selectOption
+   * @description Selects the teleological intent for the next generation cycle.
+   * Updates the deterministic state to reflect the user's chosen generative strategy.
+   * @param {GenerationType} optionId - The selected structural constraint strategy.
+   * @returns {void}
+   */
   selectOption(optionId: GenerationType) {
     this.selectedOption.set(optionId);
   }
 
+  /**
+   * @method generate
+   * @description Executes the core generation cycle (The Hickam-OODA Loop).
+   * Extracts the current topological state (Canvas Context), applies the selected
+   * persona constraints, and requests a paraconsistent synthesis from the AI.
+   * Handles asynchronous execution and error propagation.
+   * @returns {Promise<void>} Resolves when the generation cycle is complete or trapped.
+   */
   async generate() {
     if (!this.idea() || this.isLoading()) {
       return;
@@ -258,6 +287,14 @@ FEATURES:
     }
   }
 
+  /**
+   * @method copyToClipboard
+   * @description Extracts the resulting artifact (text) and places it into the system clipboard.
+   * Implements a visual feedback mechanism by temporarily tracking the copied index.
+   * @param {string} text - The generated concept text to copy.
+   * @param {number} index - The temporal index of the copied concept for UI feedback.
+   * @returns {void}
+   */
   copyToClipboard(text: string, index: number) {
     if (!navigator.clipboard) {
       console.error('Clipboard API not available.');
@@ -276,6 +313,13 @@ FEATURES:
   }
 
 
+  /**
+   * @method getCanvasContext
+   * @description Serializes the current topological canvas state into a JSON string.
+   * This string serves as the context window for subsequent AI synthesis, enabling
+   * the RAG Synthesis and Symbiotic Bridge functions.
+   * @returns {string} A JSON-stringified array of the current canvas nodes.
+   */
   getCanvasContext(): string {
     const context: any[] = [];
     Object.values(this.canvasNodes).forEach((node: any) => {
@@ -347,14 +391,36 @@ FEATURES:
     });
   }
 
+  /**
+   * @method onDragStart
+   * @description Initiates the transport of a concept from the generation panel to the topological canvas.
+   * Serializes the concept object into the DataTransfer object.
+   * @param {DragEvent} event - The native drag event.
+   * @param {Concept} concept - The structural concept being transported.
+   * @returns {void}
+   */
   onDragStart(event: DragEvent, concept: Concept) {
     event.dataTransfer?.setData('application/json', JSON.stringify(concept));
   }
 
+  /**
+   * @method onDragOver
+   * @description Authorizes the topological canvas as a valid drop zone for concept entities.
+   * @param {DragEvent} event - The native drag event.
+   * @returns {void}
+   */
   onDragOver(event: DragEvent) {
     event.preventDefault(); // Necessary to allow dropping
   }
 
+  /**
+   * @method onDrop
+   * @description Completes the transport of a concept onto the topological canvas.
+   * Calculates the relative projection coordinates and instantiates a new Konva group
+   * representation of the concept. Handles automatic seed node generation if the canvas is empty.
+   * @param {DragEvent} event - The native drag event containing the serialized concept.
+   * @returns {void}
+   */
   onDrop(event: DragEvent) {
     event.preventDefault();
     if (!this.stage) return;

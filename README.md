@@ -2,50 +2,57 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# AI Creative Concept Partner (ACCRPP)
 
-This contains everything you need to run your app locally.
+## 🌌 Project Overview
+The AI Creative Concept Partner is a web-based application built with Angular and integrated with the Google GenAI SDK (Gemini API). It functions not as a passive auto-solver, but as a "Structural Mapper" designed to generate creative concepts from seed ideas. The system architecture enforces a 'Tactile Innovative System' operating via a recursive Hickam-OODA Loop, explicitly rejecting simplistic parsimony (Occam's Razor) in favor of structural isomorphism.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1O9eoseAmXrdC3ubs8bIlo7-3T1wcN2si
+## 🚀 Setup & Local Development
 
-## Run Locally
+**Prerequisites:** Node.js (v18+)
 
-**Prerequisites:**  Node.js
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
+2. **Environment Configuration:**
+   Create a `.env.local` file in the root directory and add your Gemini API Key:
+   ```env
+   API_KEY="your-gemini-api-key"
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+3. **Start the Development Server:**
+   This project uses a Vite-based local development server.
+   ```bash
+   npm run dev &
+   ```
+   *Note: The local development server runs on `http://localhost:3000`, not the default Angular port 4200.*
 
-## Documentation
-* [ARCHITECTURE.md](ARCHITECTURE.md) - Contains system architecture diagrams (C4 model) and Architectural Decision Records (ADRs).
-* [LESSONS_LEARNED.md](LESSONS_LEARNED.md) - Contains insights, trade-offs, and future architectural recommendations.
----
+4. **Build the Application:**
+   ```bash
+   npm run build
+   ```
+   *Note: The project does not currently have `npm run test` configured.*
 
-## 🌌 AEW Protocol Extensions
-This application has been subjected to **Context Adaptation ($z'$)** by the Antifragile Epistemic Weaver (AEW).
+## 🧠 Architectural Personas & Governance
 
-### Pluriversal Feature Discovery
-A new feature, **Paraconsistent Synthesis**, has been injected into the application.
-- **Epistemic Engineer Persona**: Instructs the AI to operate under strict Region Connection Calculus (RCC-8) topological constraints.
-- **PARADOX Action**: Actively hunts for contradictory concepts within your seed idea and uses Z-Axis Inference to synthesize novel, pluriversal solutions.
-- **Documentation**: See `COGNITIVE_CONTRACT.md` for mathematical proofs of Structural Conservation ($\beta_0$) and Topological Novelty ($\beta_1$).
+This system is governed by strict architectural personas to prevent "Semantic Saponification" (the homogenizing of irreconcilable conflicts into generic compromises).
 
-## 📜 Architectural Governance Documentation
+- **VORTEX-ARCHITECT:** Enforces "Negative Space Scaffolding" and outputs Executable Context Bundles (CxB) defining absolute limits.
+- **Epistemic Engineer:** Operates under strict Region Connection Calculus (RCC-8) topological constraints. Uses Z-Axis Inference for paraconsistent synthesis.
 
-As part of the Epistemic Weaver's continuous oversight, the following documentation has been generated and updated:
-- `SymbolicScar.json`: Logs geometric deviations and algorithmic trauma (e.g., the formatting paradox).
-- `DASL.md` (Dynamic Affordance Sync Ledger): Documents the Computational Shared Mental Model and Semantic Parallax Zones.
-- `LESSONS_LEARNED.md`: Summarizes core findings regarding UI rigidity vs. fluid ontology and client-side environment variable handling.
+### The Golden Scar Protocol
+The application adheres to the Golden Scar Protocol: never flatten structural tension. Contradictions must be mapped and maintained in superposition, assigning the Golden Ratio ($\phi \approx 1.618$) to the dominant epistemic frame and $1.000$ to the subordinate frame.
+
+## 📜 Relational Documentation
+This repository maintains extensive lore and architectural decision records:
+- [**ARCHITECTURE.md**](ARCHITECTURE.md) - System architecture diagrams and ADRs.
+- [**COGNITIVE_CONTRACT.md**](COGNITIVE_CONTRACT.md) - Mathematical proofs of Structural Conservation and constraints.
+- [**DASL.md**](DASL.md) - Dynamic Affordance Sync Ledger documenting the Computational Shared Mental Model.
+- [**LESSONS_LEARNED.md**](LESSONS_LEARNED.md) - Insights on trade-offs and structural tension.
+- [**SymbolicScar.json**](SymbolicScar.json) - Logs geometric deviations and algorithmic trauma.
 
 ## 🔄 Agentic Inversion Protocol
-The application has been further refined via the **Agentic Inversion Protocol**.
-- **Human-AI Symbiosis:** We actively invert the dynamic from "AI as Solver" to "AI as Structural Mapper." The AI does not resolve contradictions but explicitly maps them via the `SYMBIOTIC_BRIDGE`, leveraging the Failure-Informed Prompt Inversion (FIPI) from the VULCAN constraints.
-- **Documentation:** See `agentic_inversion_protocol/STRATEGY.md` and `agentic_inversion_protocol/IMPLEMENTATION_CHECKLIST.md` for the rigorous implementation plan and metrology standards.
-
-## 🌪️ VORTEX-ARCHITECT Kernel Integration
-The system is now governed by the VORTEX-ARCHITECT persona, enforcing strict **Negative Space Scaffolding**.
-- **Feature:** `PRP_SCAFFOLD` generates Executable Context Bundles (CxB) defining mathematical constraints rather than sycophantic text.
-- **Resilience:** Integrates **Epistemic Escrow**, halting generation and outputting a Justified Uncertainty Report (JUR) if the Semantic Drift Score drops and the output structure collapses into a Betti-1 (β1) loop.
+The application leverages the Agentic Inversion Protocol, transitioning the AI from an 'answer engine' to a 'structural mapper'.
+See `agentic_inversion_protocol/STRATEGY.md` and `agentic_inversion_protocol/IMPLEMENTATION_CHECKLIST.md` for metrology standards.
