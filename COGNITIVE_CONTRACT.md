@@ -57,3 +57,11 @@ Following the ingestion of the `AGENTS.md` schema, the system has integrated the
 - **Action:** Integration of the Agentic Inversion Strategy based on VULCAN architectural constraints.
 - **Validation Phase Active:** The system explicitly implements the AI-Human complementary dynamic. The AI is constrained to provide topological mapping of contradictions (Paraconsistency), while the Human must provide the contextual grounding and resolution.
 - **Architectural Shift:** Moves the system away from auto-resolution and sycophantic generation towards Failure-Informed Prompt Inversion, rigorously mapped via `agentic_inversion_protocol/STRATEGY.md`.
+
+## Theorem 5: The Isomorphic Documentation Mandate
+**Postulate:** Code documentation is not a secondary, explanatory artifact; it is the primary topological map of the system's epistemic boundaries.
+
+**Proof of Adherence:**
+1.  All public methods within the Structural Mapper (`app.component.ts`) and the LLM Bridge (`gemini.service.ts`) are enveloped in JSDoc blocks.
+2.  These blocks do not succumb to Occam's Razor; they explicitly define their role in the Hickam-OODA loop and paraconsistent synthesis.
+3.  Therefore, the documentation itself is structurally isomorphic to the system's paraconsistent architecture, satisfying the Golden Scar protocol.

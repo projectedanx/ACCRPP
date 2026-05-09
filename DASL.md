@@ -43,3 +43,9 @@
 ## SPZ-Eta (The Semantic Saponification Threat)
 **Context:** The LLM's tendency to drift towards generic consensus over long generation cycles, violating the Anti-Sycophancy mandate.
 **Resolution:** VORTEX-ARCHITECT integration. Implementation of the Epistemic Escrow mechanic within the core parsing layer. If the LLM output violates the formatting schema (indicating a collapse of structural tension), the system halts the visualization and outputs a Justified Uncertainty Report (JUR), preventing the UI from displaying "saponified" data.
+
+### JSDoc Semantic Parallax Zone
+**Added: May 2024**
+*   **The Artifact:** JSDoc Blocks in `app.component.ts` and `gemini.service.ts`.
+*   **The Friction:** Standard JSDoc expects a "Waterfall Model" description of state transitions. The underlying code operates via the Hickam-OODA recursive loop.
+*   **The Parallax:** The JSDoc is readable by standard tooling (TypeScript compiler, IDEs) as mere strings, but to the VORTEX-ARCHITECT persona, these strings define strict invariant boundaries (Executable Context Bundles). The same text serves as a passive explanation to the junior developer and an active constraint to the Epistemic Engine.

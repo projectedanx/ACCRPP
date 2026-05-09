@@ -18,9 +18,19 @@ export interface Concept {
 @Injectable({
   providedIn: 'root',
 })
+/**
+ * @class GeminiService
+ * @description The structural bridge to the Google GenAI models. Translates topological and dialectical
+ * prompts into executable inference requests. Responsible for parsing paraconsistent outputs back into
+ * rigid Conceptual models, ensuring adherence to the Semantic Saponification resistance protocols.
+ */
 export class GeminiService {
   private ai: GoogleGenAI;
 
+  /**
+   * @constructor
+   * @description Initializes the GoogleGenAI instance. Attempts to mount the API key from the environment.
+   */
   constructor() {
     if (typeof process === 'undefined' || !process?.env?.API_KEY) {
       console.error('API_KEY is not set.');
@@ -30,6 +40,18 @@ export class GeminiService {
     this.ai = new GoogleGenAI({ apiKey: typeof process !== 'undefined' && process?.env?.API_KEY ? process.env.API_KEY : 'dummy-key' });
   }
 
+  /**
+   * @method generateConcepts
+   * @description Constructs and dispatches the specific Hickam-OODA Prompt based on the requested GenerationType.
+   * Maps the user's seed idea and current canvas context into a structural query for the LLM.
+   * @param {string} idea - The raw user input or target goal.
+   * @param {GenerationType} type - The selected generative constraint strategy (e.g., 'DIALECTIC', 'SYMBIOTIC_BRIDGE').
+   * @param {string} personaInstruction - The primary architectural instruction (e.g., VORTEX-ARCHITECT).
+   * @param {string} [secondaryPersonaInstruction] - An optional antagonistic instruction, used primarily in DIALECTIC generation to enforce structural tension.
+   * @param {string} [canvasContext] - The serialized JSON representation of the current topological state.
+   * @returns {Promise<Concept[]>} A promise resolving to an array of strictly parsed Concept objects representing the synthesis.
+   * @throws {Error} If the API call fails or if an invalid GenerationType is provided.
+   */
   async generateConcepts(
     idea: string,
     type: GenerationType,
@@ -410,6 +432,13 @@ Format your response EXACTLY as:
   }
 
 
+  /**
+   * @method parseRagResponse
+   * @description Parses a response strictly structured as JSON originating from a RAG_SYNTHESIS request.
+   * Extracts the answer, confidence, and constructs a citation string if applicable.
+   * @param {GenerateContentResponse} response - The raw response from the GenAI model.
+   * @returns {Concept[]} An array containing a single concept with the synthesized answer and citations, or an error concept.
+   */
   private parseRagResponse(response: GenerateContentResponse): Concept[] {
     const text = response.text;
     if (!text) return [];
@@ -445,6 +474,15 @@ Format your response EXACTLY as:
     }
   }
 
+  /**
+   * @method parseStandardResponse
+   * @description Parses the default markdown-formatted response from the GenAI model.
+   * Expects a structure using bold headings (`**Heading**`) followed by content.
+   * Implements the Epistemic Escrow / Justified Uncertainty Report (JUR) Trigger if parsing fails,
+   * returning an explicit failure state to prevent Semantic Saponification.
+   * @param {GenerateContentResponse} response - The raw response from the GenAI model.
+   * @returns {Concept[]} An array of extracted Concept objects, or the JUR error concepts if parsing fails.
+   */
   private parseStandardResponse(response: GenerateContentResponse): Concept[] {
     const text = response.text;
     if (!text) return [];
@@ -473,6 +511,13 @@ Format your response EXACTLY as:
     return concepts;
   }
   
+  /**
+   * @method parseResearchResponse
+   * @description Parses a response containing grounding metadata (e.g., from web research).
+   * Extracts the textual content and the associated source URIs.
+   * @param {GenerateContentResponse} response - The raw response from the GenAI model, potentially containing `groundingMetadata`.
+   * @returns {Concept[]} An array containing a single Concept holding the research summary and extracted sources.
+   */
   private parseResearchResponse(response: GenerateContentResponse): Concept[] {
       const text = response.text;
       if (!text) return [];

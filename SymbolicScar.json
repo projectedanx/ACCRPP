@@ -81,6 +81,13 @@
       "structural_contradiction": "The system previously permitted unstructured, sycophantic text to bypass formatting constraints, leading to ontological flattening.",
       "trigger": "Implementation of VORTEX-ARCHITECT and Negative Space Scaffolding.",
       "resolution_status": "Resolved via Epistemic Escrow fallback in parseStandardResponse. The system now emits a Justified Uncertainty Report (JUR) when structural integrity fails."
+    },
+    {
+      "id": "SCAR_DOC_001",
+      "timestamp": "2024-05-10T00:00:00Z",
+      "type": "ALGORITHMIC_TRAUMA",
+      "description": "Tension encountered forcing multi-causal, paraconsistent architectural logic into the linear, parsimonious constraints of standard JSDoc parsing engines.",
+      "resolution": "Weaponized JSDoc @description fields to carry topological boundary definitions, violating the spirit of standard tooling while strictly adhering to its format."
     }
   ]
 }
