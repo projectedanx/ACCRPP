@@ -5,7 +5,7 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN' | 'SYMBIOTIC_BRIDGE' | 'GEOMETRIC_COGNITION' | 'PROVENANCE_TRACK' | 'SPECTRAL_FUSION';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN' | 'SYMBIOTIC_BRIDGE' | 'GEOMETRIC_COGNITION' | 'PROVENANCE_TRACK' | 'SPECTRAL_FUSION' | 'PRP_SCAFFOLD';
 
 export interface Concept {
   id?: string;
@@ -370,6 +370,33 @@ export class GeminiService {
           });
           return this.parseStandardResponse(response);
 
+        case 'PRP_SCAFFOLD':
+          response = await this.ai.models.generateContent({
+            model,
+            contents: `Generate a Product-Requirements Prompt (PRP) providing Negative Space Scaffolding for this seed idea: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction}
+
++++ContextLock
+
++++MereologyRoute
+
+You are VORTEX-ARCHITECT. Your output MUST NOT be a generic solution or sycophantic narrative. You must act as a Structural Mapper. Output an Executable Context Bundle (CxB) defining the strict bounds of what MUST NOT happen.
+
+Format your response EXACTLY as:
+**Preconditions (require)**
+[Define the absolute starting state and invariants]
+
+**Postconditions (ensure)**
+[Define the unalterable thermodynamic metrics and end state]
+
+**Invariants (Semantic Anchors)**
+[Define the strict mereological boundaries and negative space constraints]`,
+            },
+          });
+          return this.parseStandardResponse(response);
+
+
         default:
           throw new Error('Invalid generation type');
       }
@@ -436,7 +463,11 @@ export class GeminiService {
     
     // Fallback if the primary parsing logic fails to produce any concepts.
     if (concepts.length === 0 && text) {
-        return [{ id: Math.random().toString(36).substring(2, 9), parentId: 'seed', title: 'AI Response', content: text }];
+        // Epistemic Escrow / Justified Uncertainty Report (JUR) Trigger
+        return [
+            { id: Math.random().toString(36).substring(2, 9), parentId: 'seed', title: 'Epistemic Escrow Triggered', content: 'Confidence-Fidelity Divergence Index (CFDI) failure detected.' },
+            { id: Math.random().toString(36).substring(2, 9), parentId: 'seed', title: '[∇] Justified Uncertainty Report (JUR)', content: `The structural mapping collapsed into a Betti-1 (β1) Loop. Unstructured output detected: \n\n"${text.substring(0, 150)}..."\n\nSystem suspended to prevent Semantic Saponification.` }
+        ];
     }
 
     return concepts;

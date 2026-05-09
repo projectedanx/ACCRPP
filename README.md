@@ -44,3 +44,8 @@ As part of the Epistemic Weaver's continuous oversight, the following documentat
 The application has been further refined via the **Agentic Inversion Protocol**.
 - **Human-AI Symbiosis:** We actively invert the dynamic from "AI as Solver" to "AI as Structural Mapper." The AI does not resolve contradictions but explicitly maps them via the `SYMBIOTIC_BRIDGE`, leveraging the Failure-Informed Prompt Inversion (FIPI) from the VULCAN constraints.
 - **Documentation:** See `agentic_inversion_protocol/STRATEGY.md` and `agentic_inversion_protocol/IMPLEMENTATION_CHECKLIST.md` for the rigorous implementation plan and metrology standards.
+
+## 🌪️ VORTEX-ARCHITECT Kernel Integration
+The system is now governed by the VORTEX-ARCHITECT persona, enforcing strict **Negative Space Scaffolding**.
+- **Feature:** `PRP_SCAFFOLD` generates Executable Context Bundles (CxB) defining mathematical constraints rather than sycophantic text.
+- **Resilience:** Integrates **Epistemic Escrow**, halting generation and outputting a Justified Uncertainty Report (JUR) if the Semantic Drift Score drops and the output structure collapses into a Betti-1 (β1) loop.
