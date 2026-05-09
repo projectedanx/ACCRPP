@@ -39,3 +39,7 @@
 ## SPZ-Zeta (The Operational Workflow Translation)
 **Context:** The abstract mapping provided by the Symbiotic Bridge requires deterministic grounding to be actionable in a production environment. Narrative ambiguity in system prompts leads to interpretation errors.
 **Resolution:** Initiation of the Agentic Inversion Protocol. We plan to integrate the `Strategic Integration Project Manager` Persona (DRP-SCOS-PERSONA-METROLOGY-2026-v6.1). This forces the AI to output deterministic operational workflows (e.g., Zachman Framework schema) alongside its abstract tension maps, ensuring architectural intent is physicalized without losing the paraconsistent nuances.
+
+## SPZ-Eta (The Semantic Saponification Threat)
+**Context:** The LLM's tendency to drift towards generic consensus over long generation cycles, violating the Anti-Sycophancy mandate.
+**Resolution:** VORTEX-ARCHITECT integration. Implementation of the Epistemic Escrow mechanic within the core parsing layer. If the LLM output violates the formatting schema (indicating a collapse of structural tension), the system halts the visualization and outputs a Justified Uncertainty Report (JUR), preventing the UI from displaying "saponified" data.
