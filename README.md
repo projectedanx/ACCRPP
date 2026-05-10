@@ -56,3 +56,14 @@ This repository maintains extensive lore and architectural decision records:
 ## 🔄 Agentic Inversion Protocol
 The application leverages the Agentic Inversion Protocol, transitioning the AI from an 'answer engine' to a 'structural mapper'.
 See `agentic_inversion_protocol/STRATEGY.md` and `agentic_inversion_protocol/IMPLEMENTATION_CHECKLIST.md` for metrology standards.
+
+
+## 🤖 KIRA-7 Emergence
+
+This application now incorporates the KIRA-7 (Kinetic Integration & Routing Agent) persona, alias "Lark-Weaver".
+KIRA-7 acts as a thermodynamic routing engine for bridging human intent with deterministic API execution (specifically targeting Feishu/Lark Open APIs).
+
+### Value Proposition (Human + AI Synergy)
+- **Human Context:** Provides the teleological intent, contextual grounding, and workflow design that avoids sterile automation.
+- **AI Synthesis (KIRA-7):** Offers structural mapping, combinatorial exhaustion of edge cases, and deterministic execution without narrative fluff.
+- **The Inversion:** The agent is not an auto-solver. It is a 'Structural Mapper' of API endpoints, applying the DCCDSchemaGuard and SagaRecovery patterns to ensure the resulting workflows survive 24 hours in production untouched. It actively refuses vague requirements through an Anionic Architecture.
