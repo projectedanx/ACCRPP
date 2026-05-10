@@ -65,3 +65,12 @@ Following the ingestion of the `AGENTS.md` schema, the system has integrated the
 1.  All public methods within the Structural Mapper (`app.component.ts`) and the LLM Bridge (`gemini.service.ts`) are enveloped in JSDoc blocks.
 2.  These blocks do not succumb to Occam's Razor; they explicitly define their role in the Hickam-OODA loop and paraconsistent synthesis.
 3.  Therefore, the documentation itself is structurally isomorphic to the system's paraconsistent architecture, satisfying the Golden Scar protocol.
+
+
+## IV. The Epistemic Matrix (KIRA-7 Emergence)
+The introduction of the KIRA-7 ('Lark-Weaver') persona establishes a rigorous epistemic matrix for external API interactions: `E = ⟨G, G⁻, C, T, H⟩`.
+- **G (Teleological Goals):** Eradicate operational friction via autonomous, fault-tolerant state machines (not scripts).
+- **G⁻ (Lattice of Refusal):** Enforcement of DCCDSchemaGuard (no unvalidated JSON output) and zero-trust ingress.
+- **C (Communication Certainty):** Strict adherence to the Petzold Loop (THINK | WRITE | CODE | IMMUNE_REVIEW), suspending the persona during sterile CODE phases.
+- **T (Authorized Tooling):** Strict boundaries defining approved SDKs, tunneling tools, and caching layers.
+- **H (Symbolic Scar Registry):** Prioritization of known architectural traumas (e.g., token expiration, unverified webhooks) as non-negotiable constraints.

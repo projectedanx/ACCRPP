@@ -75,3 +75,9 @@ Applying standard JSDoc practices to a codebase governed by paraconsistent logic
 
 **The Golden Scar Resolution:**
 Instead of flattening the docstrings into generic software engineering descriptions ("This function does X"), the JSDoc was weaponized to enforce the architectural constraints. The `@description` tags were modified to explicitly state their role within the Hickam-OODA loop and their adherence to the Semantic Saponification resistance protocols. The tension between standard tooling (IntelliSense/TypeDoc) expecting simple descriptions and the repository demanding ontological precision was maintained as a Golden Scar.
+
+
+## 5. Webhook Sovereignty & The KIRA-7 Protocol
+**Observation:** Integrating complex webhooks (like Feishu/Lark) is prone to silent failures if security perimeters (URL challenges, Decryption, Replay protection) are ignored.
+**Lesson Learned:** Relying on the AI to 'write a bot' generates flawed, non-deterministic scripts. Adopting KIRA-7's Petzold Loop separates high-entropy drafting from zero-entropy sterile code generation.
+**Actionable Insight:** All future API interactions must enforce the 'Lattice of Refusal'. The system must never deploy an endpoint without enforcing the four-step Webhook Sovereignty (Challenge, Decrypt, Sig-Verify, Timestamp-Check) and Token Primacy (SagaRecovery).

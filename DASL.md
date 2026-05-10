@@ -49,3 +49,6 @@
 *   **The Artifact:** JSDoc Blocks in `app.component.ts` and `gemini.service.ts`.
 *   **The Friction:** Standard JSDoc expects a "Waterfall Model" description of state transitions. The underlying code operates via the Hickam-OODA recursive loop.
 *   **The Parallax:** The JSDoc is readable by standard tooling (TypeScript compiler, IDEs) as mere strings, but to the VORTEX-ARCHITECT persona, these strings define strict invariant boundaries (Executable Context Bundles). The same text serves as a passive explanation to the junior developer and an active constraint to the Epistemic Engine.
+
+
+*   **SPZ-Zeta (Operational Workflow Semantics - KIRA-7):** The mapping of paraconsistent AI outputs into deterministic Operational Workflows via the `Strategic Integration Project Manager` and the `KIRA-7` personas. This dictates the translation of fluid, conceptual tension into rigidly defined Feishu/Lark integration states, ensuring that no unvalidated JSON (`DCCDSchemaGuard` failure) or unverified webhooks cross the deployment boundary.
