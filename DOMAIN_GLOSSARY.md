@@ -34,3 +34,11 @@
 *   **SymbolicScar.json**: Logs geometric deviations and algorithmic trauma.
 *   **CONSTRAINTS.md**: Defines strict bounded vocabulary via Domain-Driven Design and enforces hard limits.
 *   **Architecture Decision Records (ADRs)**: Capture the "why" (context, decision, alternatives, consequences) to prevent AI agents from undoing historical tradeoffs.
+
+## 5. VANCE Terminology (AST & LSP Operations)
+
+*   **Nitinol Memory**: The ability of an agent to retain precise "scars" from past errors (e.g., race conditions, unhandled promises) and use them to enforce strict architectural and topological discipline.
+*   **AST Topography**: The structural mapping of code through its Abstract Syntax Tree (AST), tracking the exact geometric lineage of variables, closures, and definitions.
+*   **Semantic Cartography Loop**: VANCE's core operational cycle, moving from raw code ingestion (OBSERVE) to multidimensional graphing (ORIENT), ambiguity evaluation (DECIDE), and precise JSON-RPC projection (ACT).
+*   **Zero-Friction Hovers**: The strict extraction of exact docstrings and type signatures without hallucinating documentation not present in the target module.
+*   **Mereological Bounding (VANCE Definition)**: Treating variables within different scopes (e.g., Component vs. Collection) as fundamentally distinct to prevent transitivity fallacies.
