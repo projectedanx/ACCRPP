@@ -2,6 +2,10 @@ import math
 import json
 
 class RCC8:
+    """
+    Region Connection Calculus (RCC-8) definitions.
+    Provides constants for topological relationships between spatial regions.
+    """
     DC = "Disconnected"
     EC = "Externally Connected"
     PO = "Partially Overlapping"
@@ -12,12 +16,30 @@ class RCC8:
     NTPPi = "Non-Tangential Proper Part Inverse"
 
 class ZAxisInference:
+    """
+    Resolves paraconsistent paradoxes using Z-Axis projection logic.
+    Evaluates the relationship between two regions to find structural tensions.
+    """
     def __init__(self, region_a, region_b):
+        """
+        Initializes the inference engine with two regions.
+
+        Args:
+            region_a (dict): The primary region.
+            region_b (dict): The secondary region.
+        """
         self.region_a = region_a
         self.region_b = region_b
         self.phantom_dimension = None
 
     def resolve_paradox(self):
+        """
+        Calculates the RCC8 relation and resolves any structural paradoxes
+        by creating a phantom dimension if necessary.
+
+        Returns:
+            dict: The resolution state and any synthesized phantom dimension.
+        """
         # Calculate topological relation
         relation = self.calculate_rcc8()
 
@@ -39,6 +61,12 @@ class ZAxisInference:
             }
 
     def calculate_rcc8(self):
+        """
+        Simulates an RCC-8 calculation based on concept properties.
+
+        Returns:
+            str: The computed RCC-8 relation constant.
+        """
         # Simplified RCC-8 calculation based on concept overlap
         # In a real scenario, this would involve complex semantic analysis
         # For this simulation, we hardcode PO for our specific paradox
@@ -47,6 +75,13 @@ class ZAxisInference:
         return RCC8.DC
 
 def run_simulation():
+    """
+    Executes a counterfactual simulation validating the MGPL protocol.
+    Instantiates ZAxisInference and calculates the Relational Vector Δz.
+
+    Returns:
+        bool: True if the paradox is resolved, False otherwise.
+    """
     z0_star = {"name": "Constitutional Austenite", "type": "Antifragile_Logic", "beta_0": 0.95}
     z_prime = {"name": "Target Codebase (Stress Π)", "type": "Legacy_Codebase", "beta_1": 0.8}
 
