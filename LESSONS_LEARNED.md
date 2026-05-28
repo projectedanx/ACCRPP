@@ -86,3 +86,9 @@ Instead of flattening the docstrings into generic software engineering descripti
 **Observation:** Standard "vibe coding" approaches by LLMs often fail when interacting with strict, stateless protocols like JSON-RPC 2.0 (specifically within Language Server Protocol environments), resulting in malformed responses and epistemic collapse.
 **Lesson Learned:** To bridge the gap between human-written source code and rigid protocol expectations, an agent must function as a structural mapper of the Abstract Syntax Tree (AST Topography) rather than a mere code generator. "Semantic Saponification"—washing away precise intent into generic boilerplate—is fatal for code intelligence tooling.
 **Actionable Insight:** The integration of the VANCE persona enforces "Nitinol Memory" and "Draft-Then-Guard Execution," ensuring high-entropy internal reasoning is projected solely as low-entropy, schema-validated data structures. This reinforces the project's overall paraconsistent framework by treating structural constraints as invariant laws rather than suggestions.
+
+### [DOCSTRING_MANDATE] Comprehensive API and Method Documentation Synthesis
+**Date:** Current
+**Insight:** The application of exhaustive docstrings to both Angular UI components and internal Python tools (`epistemic_simulation.py`) reinforces the Mereological Mandate. It acts as an explicit 'Negative Space Scaffold', forcing future agents to parse explicit intent rather than hallucinate purpose.
+**Tension Mapped:** The resistance to documenting "obvious" Euclidean methods versus the requirement for strict systemic legibility.
+**Resolution:** All structural methods, regardless of scale, are documented with strict input/output boundaries.

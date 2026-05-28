@@ -125,6 +125,10 @@ FEATURES:
   selectedPersonaId = signal<string>(this.personas[1].id);
   selectedAntithesisPersonaId = signal<string>(this.personas[2].id);
 
+  /**
+   * @method constructor
+   * @description Initializes the component and sets the initial theme based on system preferences.
+   */
   constructor() {
     this.isDarkMode.set(this.getInitialTheme());
 
@@ -154,6 +158,11 @@ FEATURES:
     this.initializeCanvas();
   }
 
+  /**
+   * @method getInitialTheme
+   * @description Determines the initial theme (dark or light) based on the user's system preferences.
+   * @returns {boolean} True if dark mode is preferred, false otherwise.
+   */
   private getInitialTheme(): boolean {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
@@ -165,6 +174,11 @@ FEATURES:
     return true; // Default to dark on server or if window is undefined
   }
 
+  /**
+   * @method toggleTheme
+   * @description Toggles the application between light and dark mode themes, updating canvas accordingly.
+   * @returns {void}
+   */
   toggleTheme() {
     this.isDarkMode.update(value => !value);
   }
@@ -357,6 +371,12 @@ FEATURES:
 
   // --- Playground Canvas Methods ---
 
+  /**
+   * @method initializeCanvas
+   * @description Initializes the Konva.js stage and layer for the topological canvas.
+   * Sets up drag and drop and zoom functionalities.
+   * @returns {void}
+   */
   private initializeCanvas() {
     const container = this.playgroundContainer.nativeElement;
     this.stage = new Konva.Stage({
@@ -396,6 +416,11 @@ FEATURES:
     });
   }
 
+  /**
+   * @method updateCanvasTheme
+   * @description Updates the colors and styles of the canvas elements to match the current theme.
+   * @returns {void}
+   */
   private updateCanvasTheme() {
     const isDark = this.isDarkMode();
     const bg = isDark ? '#111827' : '#f3f4f6'; // gray-900 or gray-100
@@ -482,6 +507,13 @@ FEATURES:
     }
   }
 
+  /**
+   * @method createConceptCard
+   * @description Renders a concept as a visual card on the Konva.js topological canvas.
+   * @param {Concept} concept - The concept data to render.
+   * @param {{ x: number; y: number }} position - The absolute position on the canvas to place the card.
+   * @returns {void}
+   */
   private createConceptCard(concept: Concept, position: { x: number; y: number }) {
     if (!concept || typeof concept.title !== 'string' || typeof concept.content !== 'string') {
       console.error('Attempted to create a card with invalid concept data:', concept);
@@ -562,6 +594,11 @@ FEATURES:
     this.updateEdges();
   }
 
+  /**
+   * @method updateEdges
+   * @description Redraws the directional edges (arrows) between concept nodes on the canvas based on parent-child relationships.
+   * @returns {void}
+   */
   private updateEdges() {
       // Clear existing edges
       this.canvasEdges.forEach(edge => edge.destroy());

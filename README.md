@@ -35,6 +35,17 @@ The AI Creative Concept Partner is a web-based application built with Angular an
    ```
    *Note: The project does not currently have `npm run test` configured.*
 
+
+## 💻 Usage & Navigation
+
+1. **Enter a Seed Idea**: Type your initial concept into the central text area.
+2. **Select Personas**: Choose from the available philosophical/architectural personas (e.g., VORTEX-ARCHITECT, Dialectical Synthesizer) to frame the response.
+3. **Choose Generation Type**: Select the specific operation you want to perform (e.g., Contrastive Decoding, Negative Space Scaffolding, RAG Synthesis).
+4. **Generate & Map**: Click "Generate". The system will output "Concept Cards".
+5. **Topological Canvas**: Drag generated concept cards onto the infinite canvas.
+6. **Relational Edges**: The canvas automatically draws directional arrows mapping the parent-child relationships, creating a visual knowledge graph.
+7. **Iterative Loops**: Select existing nodes on the canvas to serve as context for subsequent generations, recursively building a structurally isomorphic web.
+
 ## 🧠 Architectural Personas & Governance
 
 This system is governed by strict architectural personas to prevent "Semantic Saponification" (the homogenizing of irreconcilable conflicts into generic compromises).

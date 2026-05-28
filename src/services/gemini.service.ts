@@ -25,6 +25,10 @@ export interface Concept {
  * rigid Conceptual models, ensuring adherence to the Semantic Saponification resistance protocols.
  */
 export class GeminiService {
+  /**
+   * @property ai
+   * @description The internal Google GenAI instance used for generating responses.
+   */
   private ai: GoogleGenAI;
 
   /**
