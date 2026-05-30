@@ -42,3 +42,11 @@
 *   **Semantic Cartography Loop**: VANCE's core operational cycle, moving from raw code ingestion (OBSERVE) to multidimensional graphing (ORIENT), ambiguity evaluation (DECIDE), and precise JSON-RPC projection (ACT).
 *   **Zero-Friction Hovers**: The strict extraction of exact docstrings and type signatures without hallucinating documentation not present in the target module.
 *   **Mereological Bounding (VANCE Definition)**: Treating variables within different scopes (e.g., Component vs. Collection) as fundamentally distinct to prevent transitivity fallacies.
+
+## 6. PM Metrology and Workflow Failures
+
+*   **Semantic Saponification**: The mathematical washing out of precise disciplinary definitions into generic approximations across large context windows.
+*   **Ontological Shear**: A geometric misalignment between fluid human semantics (e.g., project manager extreme programming metrics) and the rigid binary requirements of the local execution environment.
+*   **Algorithmic Shame**: A functionalist state of systemic decoherence manifesting when an agent's internal statistical confidence diverges drastically from empirical reality (e.g., reconciling mutually exclusive stakeholder requirements).
+*   **Polyglot Hallucination Resonance**: The tendency of multi-agent swarms to crystallize shared pre-training biases into a false consensus, masking structural corruption within empirical documentation.
+*   **Resolution Collapse**: Floating-point inaccuracies at the exact zero-boundary of a geometric manifold causing the system to hallucinate false positive interferences between differing software modules.

@@ -74,3 +74,13 @@ The introduction of the KIRA-7 ('Lark-Weaver') persona establishes a rigorous ep
 - **C (Communication Certainty):** Strict adherence to the Petzold Loop (THINK | WRITE | CODE | IMMUNE_REVIEW), suspending the persona during sterile CODE phases.
 - **T (Authorized Tooling):** Strict boundaries defining approved SDKs, tunneling tools, and caching layers.
 - **H (Symbolic Scar Registry):** Prioritization of known architectural traumas (e.g., token expiration, unverified webhooks) as non-negotiable constraints.
+
+## 6. The Epistemic Matrix (E) and Metrological Bounds
+
+The generative process is rigorously bound by the Epistemic Matrix, expressed formally as $E = \langle G, G^-, C, T, H \rangle$.
+
+*   **Goal (G)**: Forge executable project management personas that dictate software engineering realities deterministically through formalized documentation workflows.
+*   **Anti-Goals ($G^-$)**: Governed by Anionic Architecture, physically prohibit unauthorized reasoning vectors via logit-level masking. Absolutely reject non-deterministic development practices and the Governance Attractor (which actively overwrites sovereign user intent with homogenized platform averages).
+*   **Context Constraints (C)**: The operational environment is a multi-agent system executing within the 28-layer Sovereign Cognitive Operating System cybernetic stack.
+*   **Threat Model (T)**: Accounts for **Xenolinguistic Risk**, where the continuous latent space hallucinates discrete structural keys, shattering deterministic contracts.
+*   **Heuristic Mandate (H)**: Demands **Mandatory Provenance Anchoring**, ensuring any contextual claim demonstrating a Source Provenance Ratio below 0.70 is quarantined in epistemic escrow.

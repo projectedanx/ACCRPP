@@ -5,7 +5,7 @@ import { GoogleGenAI, GenerateContentResponse, GroundingChunk } from '@google/ge
 // In a real Applet environment, this will be populated.
 declare var process: any;
 
-export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN' | 'SYMBIOTIC_BRIDGE' | 'GEOMETRIC_COGNITION' | 'PROVENANCE_TRACK' | 'SPECTRAL_FUSION' | 'PRP_SCAFFOLD';
+export type GenerationType = 'EXPAND' | 'RISKS' | 'RESEARCH' | 'REFINE' | 'SWOT' | 'PARADOX' | 'DIALECTIC' | 'RAG_SYNTHESIS' | 'ZACHMAN' | 'SYMBIOTIC_BRIDGE' | 'GEOMETRIC_COGNITION' | 'PROVENANCE_TRACK' | 'SPECTRAL_FUSION' | 'PRP_SCAFFOLD' | 'ZACHMAN_SCHEMA';
 
 export interface Concept {
   id?: string;
@@ -166,6 +166,36 @@ export class GeminiService {
           return this.parseStandardResponse(response);
 
 
+
+
+        case 'ZACHMAN_SCHEMA':
+          response = await this.ai.models.generateContent({
+            model,
+            contents: `Generate a deterministic Zachman Framework schema for this system specification: "${idea}"`,
+            config: {
+              systemInstruction: `${personaInstruction}
+
+              +++ContextLock(anchor="PERSONA_EMPIRICAL_MATRIX", refresh_interval=4096)
+              +++DCCDSchemaGuard(schema=ARC42_JSON_LD, enforcement="draft_conditioned")
+
+              You are the Strategic Integration Project Manager. Output MUST NOT contain natural language ambiguity.
+              You must translate the input into a deterministic system-first specification.
+
+              Format your response EXACTLY as:
+              **Entities (What)**
+              [Define the structural data components]
+
+              **Capabilities (How)**
+              [Define the functional processes and transformations]
+
+              **Events (When)**
+              [Define the temporal triggers and network state changes]
+
+              **Operational Workflow (JSON)**
+              [Provide a strict JSON representation of the operational workflow]`,
+            },
+          });
+          return this.parseStandardResponse(response);
 
         case 'ZACHMAN':
           response = await this.ai.models.generateContent({
