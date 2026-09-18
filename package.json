@@ -9,13 +9,13 @@
     "preview": "ng serve --configuration=production"
   },
   "dependencies": {
-    "@angular/build": "^20.3.0",
-    "@angular/cli": "^20.3.0",
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/compiler-cli": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/platform-browser": "^20.3.0",
+    "@angular/build": "^20.3.37",
+    "@angular/cli": "^20.3.37",
+    "@angular/common": "^20.3.28",
+    "@angular/compiler": "^20.3.31",
+    "@angular/compiler-cli": "^20.3.31",
+    "@angular/core": "^20.3.31",
+    "@angular/platform-browser": "^20.3.31",
     "@google/genai": "^1.25.0",
     "rxjs": "^7.8.2",
     "tailwindcss": "latest"
@@ -23,6 +23,6 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^8.3.0"
   }
 }
